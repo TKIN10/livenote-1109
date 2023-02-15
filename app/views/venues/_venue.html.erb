@@ -1,0 +1,7 @@
+<div class="card">
+  <%= link_to image_tag(venue.image, class: :card__img ), venue_path(venue.id)%>
+  <div class="card__body">
+    <%= link_to venue.title, venue_path(venue.id), class: :card__title%>
+    <%# <%= link_to "by #{venue.user.name}", root_path, class: :card__user %>
+  </div>
+</div>

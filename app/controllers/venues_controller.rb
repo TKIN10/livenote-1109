@@ -1,5 +1,30 @@
 class VenuesController < ApplicationController
+
   def index
-    @users = User.all
+    @venues = Venue.all
   end
+
+  def new
+    @venue = Venue.new
+  end
+
+  def create
+    @venue = Venue.create(venue_params)
+    if @venue.save
+      redirect_to root_path
+    else
+      render :new
+    end
+  end
+
+  def show
+    @venue = Venue.find(params[:id])
+  end
+
+  private
+
+  def venue_params
+    params.require(:venue).permit(:title, :image).merge(user_id: current_user.id)
+  end
+
 end
