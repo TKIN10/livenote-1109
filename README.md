@@ -15,9 +15,10 @@
 | Column    | Type       | Options                        |
 | --------- | ---------- | ------------------------------ |
 | live_name | text       | null: false                    |
-| comment   | text       | null: false                    |
-| cost      | references | null: false, foreign_key: true |
+| content   | text       | null: false                    |
+| cost      | text       | null: false                    |
 | user      | references | null: false, foreign_key: true |
+| venue     | references | null: false, foreign_key: true |
 
 
 ## venues テーブル

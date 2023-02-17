@@ -19,6 +19,8 @@ class VenuesController < ApplicationController
 
   def show
     @venue = Venue.find(params[:id])
+    @comment = Comment.new
+    @comments = @venue.comments.includes(:user)
   end
 
   def edit

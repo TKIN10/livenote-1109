@@ -30,24 +30,37 @@
         <%# </div> %>
       <%# </div> %> 
       <div class="prototype__comments">
-        <%# ログインしているユーザーには以下のコメント投稿フォームを表示する %>
-          <%# <%= form_with model: モデル名,local: true do |f|%>
+        <% if user_signed_in? %>
+          <%= form_with model: [@venue, @comment],local: true do |f|%>
             <div class="field">
-              <%# <%= f.label :hoge, "コメント" %><br />
-              <%# <%= f.text_field :hoge, id:"comment_content" %>
+              <%= f.label :live_name, "日付け" %><br />
+              <%= f.text_field :live_name, id:"comment_live_name" %>
+            </div>
+            <%# <div class="actions">
+              <%= f.submit "送信する", class: :form__btn  %>
+            <%# </div>  %>
+            <div class="field">
+              <%= f.label :content, "自由欄" %><br />
+              <%= f.text_field :content, id:"comment_content" %>
+            </div>
+            <div class="field">
+              <%= f.label :cost, "費用" %><br />
+              <%= f.text_field :cost, id:"comment_cost" %>
             </div>
             <div class="actions">
-              <%# <%= f.submit "送信する", class: :form__btn  %>
+              <%= f.submit "保存する", class: :form__btn  %>
             </div>
-          <%# <% end %>
-        <%# // ログインしているユーザーには上記を表示する %>
+          <% end %>
+        <% end %>
         <ul class="comments_lists">
-          <%# 投稿に紐づくコメントを一覧する処理を記述する %>
+          <% @comments.each do |comment| %>
             <li class="comments_list">
-              <%# <%= " コメントのテキスト "%>
-              <%# <%= link_to "（ ユーザー名 ）", root_path, class: :comment_user %>
+               <%= comment.live_name %>
+               <%= comment.content %>
+               <%= comment.cost %>
+               <%# <%= link_to "（#{comment.user.name}）", user_path(comment.user), class: :comment_user %> 
             </li>
-          <%# // 投稿に紐づくコメントを一覧する処理を記述する %>
+         <% end %>
         </ul>
       </div>
     </div>
